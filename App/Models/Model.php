@@ -53,7 +53,8 @@ abstract class Model
                 user_name VARCHAR(255),
                 user_email VARCHAR(255),
                 task_description TEXT,
-                task_status INT
+                task_status INT,
+                task_admin_edited INTEGER(1)
             )
         ");
         
@@ -63,5 +64,21 @@ abstract class Model
                 title VARCHAR(255)
             )
         ");
+        
+        $this->execute("
+            INSERT INTO
+                task_statuses
+                (
+                    title
+                )
+            VALUES
+                (
+                    'В работе'
+                ),
+                (
+                    'Выполнено'
+                )
+            "
+        );
     }
 }
