@@ -1,0 +1,5 @@
+# Jetbrains editors (PHPStorm, etc)
+/.idea/
+
+# Custom
+/vendor/
