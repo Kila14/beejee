@@ -31,6 +31,35 @@ class Tasks
         echo template('templates/task_item.php', ['h1' => 'Добавление задачи', 'data' => $post_data ?? [], 'task_statuses' =>$task_statuses, 'errors' => $errors ?? []]);
     }
     
+    public function editTask() : void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $post_data = $this->filterPostData($_POST);
+            
+            if (empty($errors = $this->validatePostData($post_data))) {
+                if (($this->taskModel->editTask($post_data)) === true) {
+                    setcookie('task_add_edit_result', 'Задача успешно обновлена');
+                    header('Location: /');
+                } else {
+                    $errors[] = 'При редактировании задачи произошла ошибка';
+                }
+            }
+        }
+        
+        if (
+            is_null($id = $_GET['id'] ?? null)
+            || ((int) $id != $id)
+            || empty($db_data = $this->taskModel->getTaskById((int) $id))
+        ) {
+            include_once(ROOT_PATH . '/App/Controllers/404.php');
+            exit;
+        }
+        
+        $task_statuses = $this->taskModel->getTaskStatuses();
+        
+        echo template('templates/task_item.php', ['h1' => 'Редактирование задачи', 'data' => $post_data ?? $db_data, 'task_statuses' => $task_statuses, 'errors' => $errors ?? []]);
+    }
+    
     protected function filterPostData(array $data = []) : array
     {
         if (! empty($data['user_name']))
