@@ -37,7 +37,7 @@ function any($route, $path) : void {
 }
 
 function route($route, $path) : void {
-    $root = '/' . trim($_SERVER['DOCUMENT_ROOT'], ' /');
+    $root = '/' . trim(ROOT_PATH, ' /');
     $route = '/' . trim($route, ' /');
     $path = is_string($path) ? trim($path, ' /') : $path;
     
