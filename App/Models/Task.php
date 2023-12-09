@@ -14,6 +14,7 @@ class Task extends Model
         
         return $this->execute("
             SELECT
+                tasks.id,
                 tasks.user_name,
                 tasks.user_email,
                 tasks.task_description,
@@ -31,6 +32,32 @@ class Task extends Model
             ",
             $params
         )->fetchAll();
+    }
+    
+    public function getTaskById(int $id) : array
+    {
+        $params = [
+            'id' => $id,
+        ];
+        
+        return $this->execute("
+            SELECT
+                tasks.id,
+                tasks.user_name,
+                tasks.user_email,
+                tasks.task_description,
+                task_statuses.title AS task_status
+            FROM
+                tasks
+            LEFT JOIN
+                task_statuses
+            ON
+                tasks.task_status = task_statuses.id
+            WHERE
+                tasks.id = :id
+            ",
+            $params
+        )->fetch();
     }
     
     public function addTask(array $data) : bool
@@ -53,6 +80,23 @@ class Task extends Model
                     :task_status,
                     ''
                 )
+            ",
+            $data
+        )->errorCode();
+    }
+    
+    public function editTask(array $data) : bool
+    {
+        return $this->execute("
+            UPDATE
+                tasks
+            SET
+                user_name = :user_name,
+                user_email = :user_email,
+                task_description = :task_description,
+                task_status = :task_status
+            WHERE
+                id = :id
             ",
             $data
         )->errorCode();
