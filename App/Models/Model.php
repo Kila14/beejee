@@ -11,6 +11,7 @@ abstract class Model
     public function __construct()
     {
         $this->initDBH();
+        $this->dropTables();
         $this->createTables();
     }
     
@@ -80,5 +81,18 @@ abstract class Model
                 )
             "
         );
+    }
+    
+    protected function dropTables() : void
+    {
+        $this->execute("
+            DROP TABLE IF EXISTS tasks;
+            )
+        ");
+        
+        $this->execute("
+            DROP TABLE IF EXISTS task_statuses;
+            )
+        ");
     }
 }
