@@ -48,6 +48,7 @@ function route($route, $path) : void {
     
     $request_uri = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
     $request_uri = rtrim($request_uri, ' /');
+    $request_uri = $request_uri === '' ? '/' : $request_uri;
     $request_uri = strtok($request_uri, '?');
     $route_parts = explode('/', $route);
     $request_uri_parts = explode('/', $request_uri);
