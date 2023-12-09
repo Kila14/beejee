@@ -1,4 +1,4 @@
-<form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
+<form class="mb-3" action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
     <?php if (! empty($data['id'])) : ?>
         <input type="hidden" name="id" value="<?= $data['id']; ?>">
     <?php endif; ?>

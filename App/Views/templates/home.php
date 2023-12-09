@@ -12,7 +12,9 @@
         <tbody class="table-group-divider">
             <?php foreach ($tasks as $task) : ?>
                 <tr>
-                    <td><?= $task['user_name']; ?></td>
+                    <td>
+                        <a href="/edit-task?id=<?= $task['id']; ?>"><?= $task['user_name']; ?></a>
+                    </td>
                     <td><?= $task['user_email']; ?></td>
                     <td><?= $task['task_description']; ?></td>
                     <td>
@@ -23,7 +25,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between mb-3">
         <div></div>
         <a class="btn btn-primary" href="/add-task">Добавить задачу</a>
     </div>
