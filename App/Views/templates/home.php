@@ -1,5 +1,5 @@
 <?= template('layouts/common/head.php'); ?>
-    <h1 class="text-center">Задачи</h1>
+    <h1 class="mb-3 text-center">Задачи</h1>
     <table class="table">
         <thead class="table-light">
             <tr>

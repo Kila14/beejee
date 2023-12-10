@@ -28,7 +28,7 @@ class Tasks
         
         $task_statuses = $this->taskModel->getTaskStatuses();
         
-        echo template('templates/task_item.php', ['data' => ['h1' => 'Добавление задачи', 'submit_button_title' => 'Добавить', 'data' => $post_data ?? [], 'task_statuses' =>$task_statuses, 'errors' => $errors ?? []]]);
+        echo template('templates/task_item.php', ['data' => ['h1' => 'Добавление задачи', 'submit_button_title' => 'Добавить', 'data' => $post_data ?? [], 'task_statuses' => $task_statuses, 'errors' => $errors ?? []]]);
     }
     
     public function editTask() : void

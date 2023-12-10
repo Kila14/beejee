@@ -23,7 +23,7 @@
         </select>
     </div>
     <div class="d-flex justify-content-between">
-        <a class="btn btn-secondary" href="/">Назад</a>
+        <a class="btn btn-secondary" href="/">Отмена</a>
         <button type="submit" class="btn btn-primary"><?= $submit_button_title ?? 'Отправить'; ?></button>
     </div>
 </form>
