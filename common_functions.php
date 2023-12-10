@@ -19,9 +19,10 @@ if (! function_exists('template')) {
 }
 
 if (! function_exists('getPagination')) {
-    function getPagination(string $request_uri, int $page, int $count, int $offset, int $pages_count, int $max_neighbors_pages_count) : string
+    function getPagination(int $page, int $pages_count, int $max_neighbors_pages_count) : string
     {
         $pagination = '';
+        $request_uri = $_SERVER['REQUEST_URI'];
         $url_path = parse_url($request_uri, PHP_URL_PATH);
         $url_query = parse_url($request_uri, PHP_URL_QUERY);
         parse_str($url_query ?? '', $get_params);
