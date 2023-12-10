@@ -24,7 +24,7 @@
     </div>
     <div class="d-flex justify-content-between">
         <a class="btn btn-secondary" href="/">Назад</a>
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="btn btn-primary"><?= $submit_button_title ?? 'Отправить'; ?></button>
     </div>
 </form>
 <?php foreach ($errors as $error) : ?>

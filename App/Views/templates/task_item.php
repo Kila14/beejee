@@ -1,4 +1,4 @@
 <?= template('layouts/common/head.php'); ?>
-    <h1 class="text-center"><?= $h1; ?></h1>
-    <?= template('layouts/forms/task.php', ['data' => $data, 'task_statuses' => $task_statuses, 'errors' => $errors]); ?>
+    <h1 class="text-center"><?= $data['h1'] ?? ''; ?></h1>
+    <?= template('layouts/forms/task.php', $data ?? []); ?>
 <?= template('layouts/common/footer.php'); ?>
