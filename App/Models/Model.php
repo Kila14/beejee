@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-abstract class Model
+class Model
 {
     protected \PDO | null $dbh = null;
     protected \PDOStatement|false $sth;
@@ -44,7 +44,7 @@ abstract class Model
         return $this->sth;
     }
     
-    protected function createTables() : void
+    public function createTables() : void
     {
         $this->execute("
             CREATE TABLE IF NOT EXISTS tasks(
@@ -81,7 +81,7 @@ abstract class Model
         );
     }
     
-    protected function dropTables() : void
+    public function dropTables() : void
     {
         $this->execute("
             DROP TABLE IF EXISTS tasks;
