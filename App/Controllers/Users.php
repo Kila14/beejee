@@ -50,4 +50,16 @@ class Users
         
         exit;
     }
+    
+    public static function rebuildDBTables() : void
+    {
+        if (! \App\Models\User::isAdmin())
+            \App\Controllers\Users::showForbidden();
+        
+        $model = new \App\Models\Model();
+        $model->dropTables();
+        $model->createTables();
+        
+        header('Location: /');
+    }
 }
