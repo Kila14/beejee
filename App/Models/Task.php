@@ -20,6 +20,7 @@ class Task extends Model
                 tasks.user_name,
                 tasks.user_email,
                 tasks.task_description,
+                tasks.task_admin_edited,
                 task_statuses.title AS task_status_title
             FROM
                 tasks
