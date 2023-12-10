@@ -8,6 +8,7 @@
                 <th><?= getTableColumnTitle('Email пользователя', 'tasks.user_email'); ?></th>
                 <th><?= getTableColumnTitle('Задача', 'tasks.task_description'); ?></th>
                 <th><?= getTableColumnTitle('Статус', 'tasks.task_status_id'); ?></th>
+                <th>Отметки</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -19,10 +20,8 @@
                     </td>
                     <td><?= $task['user_email']; ?></td>
                     <td><?= $task['task_description']; ?></td>
-                    <td>
-                        <?= $task['task_status_title']; ?>
-                        <?= ! empty($task['task_admin_edited']) ? '<br>Отредактировано администратором' : ''; ?>
-                    </td>
+                    <td><?= $task['task_status_title']; ?></td>
+                    <td><?= ! empty($task['task_admin_edited']) ? 'Отредактировано администратором' : ''; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
