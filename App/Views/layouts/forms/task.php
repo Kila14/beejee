@@ -14,14 +14,18 @@
         <label for="task-description" class="form-label">Задача</label>
         <textarea class="form-control" id="task-description" name="task_description"><?= $data['task_description'] ?? ''; ?></textarea>
     </div>
-    <div class="mb-3">
-        <label for="task-status-id" class="form-label">Статус</label>
-        <select class="form-select" id="task-status-id" name="task_status_id">
-            <?php foreach ($task_statuses as $task_status) : ?>
-                <option value="<?= $task_status['id']; ?>" <?= isset($data['task_status_id']) && ($data['task_status_id'] === $task_status['id']) ? " selected='selected'" : ''; ?>><?= $task_status['title']; ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
+    <?php if (\App\Models\User::isAdmin()) : ?>
+        <div class="mb-3">
+            <label for="task-status-id" class="form-label">Статус</label>
+            <select class="form-select" id="task-status-id" name="task_status_id">
+                <?php foreach ($task_statuses as $task_status) : ?>
+                    <option value="<?= $task_status['id']; ?>" <?= isset($data['task_status_id']) && ($data['task_status_id'] === $task_status['id']) ? " selected='selected'" : ''; ?>><?= $task_status['title']; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    <?php else : ?>
+        <input type="hidden" name="task_status_id" value="<?= $data['task_status_id'] ?? 1; ?>">
+    <?php endif; ?>
     <div class="d-flex justify-content-between">
         <a class="btn btn-secondary" href="/">Отмена</a>
         <button type="submit" class="btn btn-primary"><?= $submit_button_title ?? 'Отправить'; ?></button>
