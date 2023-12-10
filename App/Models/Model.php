@@ -11,8 +11,6 @@ abstract class Model
     public function __construct()
     {
         $this->initDBH();
-        $this->dropTables();
-        $this->createTables();
     }
     
     protected function initDBH() : void
@@ -32,7 +30,7 @@ abstract class Model
         $this->dbh = null;
     }
     
-    public function execute(string $statement, $data = null, $fetch_mode = \PDO::FETCH_ASSOC): bool | \PDOStatement
+    public function execute(string $statement, $data = null, $fetch_mode = \PDO::FETCH_ASSOC) : bool | \PDOStatement
     {
         $this->sth = $this->dbh->prepare($statement);
         
