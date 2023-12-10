@@ -47,7 +47,7 @@ class Task extends Model
         )->fetchColumn();
     }
     
-    public function getTaskById(int $id) : array
+    public function getTaskById(int $id) : array | bool
     {
         $params = [
             'id' => $id,
