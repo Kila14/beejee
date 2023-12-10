@@ -28,7 +28,7 @@ class User extends Model
     
     public static function isAdmin() : bool
     {
-        if (! self::$is_authenticated)
+        if (! self::isAuthenticated())
             return false;
         
         if (! is_null(self::$is_admin))
