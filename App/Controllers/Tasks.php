@@ -33,6 +33,9 @@ class Tasks
     
     public function editTask() : void
     {
+        if (! \App\Models\User::isAdmin())
+            \App\Controllers\Users::showForbidden();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post_data = $this->filterPostData($_POST);
             
