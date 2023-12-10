@@ -18,6 +18,19 @@ if (! function_exists('template')) {
     }
 }
 
+if (! function_exists('buildLink')) {
+    function buildLink(string $url_path = '') : string
+    {
+        $root_url_path = '/' . trim(ROOT_URL, ' /');
+        if (! empty($url_path)) {
+            $root_url_path = $root_url_path === '/' ? '' : $root_url_path;
+            $url_path = '/' . trim($url_path, ' /');
+        }
+        
+        return $root_url_path . $url_path;
+    }
+}
+
 if (! function_exists('getPagination')) {
     function getPagination(int $page, int $pages_count, int $max_neighbors_pages_count) : string
     {
