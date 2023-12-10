@@ -34,6 +34,17 @@ class Task extends Model
         )->fetchAll();
     }
     
+    public function getTasksCount() : int
+    {
+        return $this->execute("
+            SELECT
+                COUNT(*)
+            FROM
+                tasks
+            ",
+        )->fetchColumn();
+    }
+    
     public function getTaskById(int $id) : array
     {
         $params = [
