@@ -32,6 +32,14 @@ class Users
             header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/'));
         
         \App\Models\User::deauthenticate();
-        header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/'));
+        header('Location: /');
+    }
+    
+    public static function showForbidden() : void
+    {
+        http_response_code(403);
+        echo template('templates/403.php');
+        
+        exit;
     }
 }
