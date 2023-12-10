@@ -3,11 +3,11 @@
     <table class="table">
         <thead class="table-light">
             <tr>
-                <th>#</th>
-                <th>Имя пользователя</th>
-                <th>Email пользователя</th>
-                <th>Задача</th>
-                <th>Статус</th>
+                <th><?= getTableColumnTitle('#', 'tasks.id'); ?></th>
+                <th><?= getTableColumnTitle('Имя пользователя', 'tasks.user_name'); ?></th>
+                <th><?= getTableColumnTitle('Email пользователя', 'tasks.user_email'); ?></th>
+                <th><?= getTableColumnTitle('Задача', 'tasks.task_description'); ?></th>
+                <th><?= getTableColumnTitle('Статус', 'tasks.task_status_id'); ?></th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
