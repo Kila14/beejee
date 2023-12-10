@@ -17,6 +17,8 @@ class Tasks
             $post_data = $this->filterPostData($_POST);
             
             if (empty($errors = $this->validatePostData($post_data))) {
+                $post_data['task_admin_edited'] = 0;
+                
                 if (($this->taskModel->addTask($post_data)) === true) {
                     setcookie('task_add_edit_result', 'Задача успешно добавлена');
                     header('Location: /');
@@ -36,10 +38,19 @@ class Tasks
         if (! \App\Models\User::isAdmin())
             \App\Controllers\Users::showForbidden();
         
+        if (
+            is_null($id = $_GET['id'] ?? null)
+            || ((int) $id != $id)
+            || empty($db_data = $this->taskModel->getTaskById((int) $id))
+        )
+            \App\Controllers\Users::showNotFound();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post_data = $this->filterPostData($_POST);
             
             if (empty($errors = $this->validatePostData($post_data))) {
+                $post_data['task_admin_edited'] = $post_data['task_description'] !== $db_data['task_description'] ? 1 : 0;
+                
                 if (($this->taskModel->editTask($post_data)) === true) {
                     setcookie('task_add_edit_result', 'Задача успешно обновлена');
                     header('Location: /');
@@ -47,15 +58,6 @@ class Tasks
                     $errors[] = 'При редактировании задачи произошла ошибка';
                 }
             }
-        }
-        
-        if (
-            is_null($id = $_GET['id'] ?? null)
-            || ((int) $id != $id)
-            || empty($db_data = $this->taskModel->getTaskById((int) $id))
-        ) {
-            include_once(ROOT_PATH . '/App/Controllers/404.php');
-            exit;
         }
         
         $task_statuses = $this->taskModel->getTaskStatuses();
