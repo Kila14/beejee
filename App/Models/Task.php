@@ -4,13 +4,15 @@ namespace App\Models;
 
 class Task extends Model
 {
-    public function getTasks(int $page = 0, int $limit = 3, string $order = 'tasks.id ASC') : array
+    public function getTasks(int $offset = 0, int $count = 3, string $order_field = 'tasks.id', string $order_direction = 'asc') : array
     {
         $params = [
-            'page' => $page,
-            'limit' => $limit,
-            'order' => $order,
+            'offset' => $offset,
+            'count' => $count,
         ];
+        
+        $order_field = in_array($order_field, ['tasks.id', 'tasks.user_name', 'tasks.user_email', 'tasks.task_description', 'task_statuses.title']) ? $order_field : 'tasks.id';
+        $order_direction = in_array($order_direction, ['asc', 'desc']) ? $order_direction : 'asc';
         
         return $this->execute("
             SELECT
@@ -26,9 +28,9 @@ class Task extends Model
             ON
                 tasks.task_status_id = task_statuses.id
             ORDER BY
-                :order
+                $order_field $order_direction
             LIMIT
-                :page, :limit
+                :offset, :count
             ",
             $params
         )->fetchAll();
