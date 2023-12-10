@@ -35,6 +35,14 @@ class Users
         header('Location: /');
     }
     
+    public static function showNotFound() : void
+    {
+        http_response_code(404);
+        echo template('templates/404.php');
+        
+        exit;
+    }
+    
     public static function showForbidden() : void
     {
         http_response_code(403);
