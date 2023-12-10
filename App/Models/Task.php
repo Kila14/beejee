@@ -92,7 +92,7 @@ class Task extends Model
                     :user_email,
                     :task_description,
                     :task_status_id,
-                    ''
+                    :task_admin_edited
                 )
             ",
             $data
@@ -108,7 +108,8 @@ class Task extends Model
                 user_name = :user_name,
                 user_email = :user_email,
                 task_description = :task_description,
-                task_status_id = :task_status_id
+                task_status_id = :task_status_id,
+                task_admin_edited = :task_admin_edited
             WHERE
                 id = :id
             ",
