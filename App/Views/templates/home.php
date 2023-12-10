@@ -1,8 +1,9 @@
 <?= template('layouts/common/head.php'); ?>
     <h1 class="text-center">Задачи</h1>
     <table class="table">
-        <thead>
+        <thead class="table-light">
             <tr>
+                <th>#</th>
                 <th>Имя пользователя</th>
                 <th>Email пользователя</th>
                 <th>Задача</th>
@@ -12,6 +13,7 @@
         <tbody class="table-group-divider">
             <?php foreach ($tasks as $task) : ?>
                 <tr>
+                    <td><?= $task['id']; ?></td>
                     <td>
                         <a href="/edit-task?id=<?= $task['id']; ?>"><?= $task['user_name']; ?></a>
                     </td>
