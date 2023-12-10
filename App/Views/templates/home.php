@@ -27,6 +27,11 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <?= $pagination; ?>
+        </ul>
+    </nav>
     <div class="d-flex justify-content-between mb-3">
         <div></div>
         <a class="btn btn-primary" href="/add-task">Добавить задачу</a>
