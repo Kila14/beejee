@@ -19,7 +19,7 @@ class Index
             setcookie('task_add_edit_result', '', time() - 3600);
         
         $pages_count = (int) ceil($tasks_count / $count);
-        $pagination = getPagination($page, $pages_count, 3);
+        $pagination = $pages_count > 1 ? getPagination($page, $pages_count, 3) : '';
         
         echo template('templates/home.php', ['tasks' => $tasks, 'pagination' => $pagination,'task_add_edit_result_cookie' => $task_add_edit_result_cookie]);
     }
