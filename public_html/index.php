@@ -1,6 +1,7 @@
 <?php
 
 define('ROOT_PATH', realpath(__DIR__ . '/..'));
+define('ROOT_URL', '/');
 
 require_once ROOT_PATH . '/Autoloader.php';
 Autoloader::register();
