@@ -18,13 +18,13 @@ class Task extends Model
                 tasks.user_name,
                 tasks.user_email,
                 tasks.task_description,
-                task_statuses.title AS task_status
+                task_statuses.title AS task_status_title
             FROM
                 tasks
             LEFT JOIN
                 task_statuses
             ON
-                tasks.task_status = task_statuses.id
+                tasks.task_status_id = task_statuses.id
             ORDER BY
                 :order
             LIMIT
@@ -57,13 +57,14 @@ class Task extends Model
                 tasks.user_name,
                 tasks.user_email,
                 tasks.task_description,
-                task_statuses.title AS task_status
+                tasks.task_status_id,
+                task_statuses.title AS task_status_title
             FROM
                 tasks
             LEFT JOIN
                 task_statuses
             ON
-                tasks.task_status = task_statuses.id
+                tasks.task_status_id = task_statuses.id
             WHERE
                 tasks.id = :id
             ",
@@ -80,7 +81,7 @@ class Task extends Model
                     user_name,
                     user_email,
                     task_description,
-                    task_status,
+                    task_status_id,
                     task_admin_edited
                 )
             VALUES
@@ -88,7 +89,7 @@ class Task extends Model
                     :user_name,
                     :user_email,
                     :task_description,
-                    :task_status,
+                    :task_status_id,
                     ''
                 )
             ",
@@ -105,7 +106,7 @@ class Task extends Model
                 user_name = :user_name,
                 user_email = :user_email,
                 task_description = :task_description,
-                task_status = :task_status
+                task_status_id = :task_status_id
             WHERE
                 id = :id
             ",

@@ -54,7 +54,7 @@ abstract class Model
                 user_name VARCHAR(255),
                 user_email VARCHAR(255),
                 task_description TEXT,
-                task_status INT,
+                task_status_id INT,
                 task_admin_edited INTEGER(1)
             )
         ");

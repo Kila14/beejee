@@ -20,7 +20,7 @@
                     <td><?= $task['user_email']; ?></td>
                     <td><?= $task['task_description']; ?></td>
                     <td>
-                        <?= $task['task_status']; ?>
+                        <?= $task['task_status_title']; ?>
                         <?= ! empty($task['task_admin_edited']) ? '<br>Отредактировано администратором' : ''; ?>
                     </td>
                 </tr>

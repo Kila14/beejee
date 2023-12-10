@@ -68,8 +68,8 @@ class Tasks
         if (! empty($data['task_description']))
             $data['task_description'] = htmlspecialchars($data['task_description'], ENT_QUOTES, 'UTF-8');
         
-        if (! empty($data['task_status']))
-            $data['task_status'] = (int) htmlspecialchars($data['task_status'], ENT_QUOTES, 'UTF-8');
+        if (! empty($data['task_status_id']))
+            $data['task_status_id'] = (int) htmlspecialchars($data['task_status_id'], ENT_QUOTES, 'UTF-8');
         
         return $data;
     }
@@ -92,11 +92,11 @@ class Tasks
         if (empty($task_description) && $task_description != '0')
             $errors['task_description'] = 'Задача не заполнена';
         
-        $task_status = $data['task_status'] ?? '';
-        if (empty($task_status) && $task_status !== 0)
-            $errors['task_status'] = 'Статус задачи не указан';
-        elseif (! is_int($task_status))
-            $errors['task_status'] = 'Статус задачи не валиден';
+        $task_status_id = $data['task_status_id'] ?? '';
+        if (empty($task_status_id) && $task_status_id !== 0)
+            $errors['task_status_id'] = 'Статус задачи не указан';
+        elseif (! is_int($task_status_id))
+            $errors['task_status_id'] = 'Статус задачи не валиден';
         
         return $errors;
     }

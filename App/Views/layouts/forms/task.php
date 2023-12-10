@@ -15,10 +15,10 @@
         <textarea class="form-control" id="task-description" name="task_description"><?= $data['task_description'] ?? ''; ?></textarea>
     </div>
     <div class="mb-3">
-        <label for="task-status" class="form-label">Статус</label>
-        <select class="form-select" id="task-status" name="task_status">
+        <label for="task-status-id" class="form-label">Статус</label>
+        <select class="form-select" id="task-status-id" name="task_status_id">
             <?php foreach ($task_statuses as $task_status) : ?>
-                <option value="<?= $task_status['id']; ?>" <?= isset($data['task_status']) && ($data['task_status'] === $task_status['id']) ? " selected='selected'" : ''; ?>><?= $task_status['title']; ?></option>
+                <option value="<?= $task_status['id']; ?>" <?= isset($data['task_status_id']) && ($data['task_status_id'] === $task_status['id']) ? " selected='selected'" : ''; ?>><?= $task_status['title']; ?></option>
             <?php endforeach; ?>
         </select>
     </div>
