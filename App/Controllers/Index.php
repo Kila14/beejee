@@ -18,6 +18,9 @@ class Index
         if (! empty($task_add_edit_result_cookie = $_COOKIE['task_add_edit_result'] ?? ''))
             setcookie('task_add_edit_result', '', time() - 3600);
         
-        echo template('templates/home.php', ['tasks' => $tasks, 'task_add_edit_result_cookie' => $task_add_edit_result_cookie]);
+        $pages_count = (int) ceil($tasks_count / $count);
+        $pagination = getPagination($page, $pages_count, 3);
+        
+        echo template('templates/home.php', ['tasks' => $tasks, 'pagination' => $pagination,'task_add_edit_result_cookie' => $task_add_edit_result_cookie]);
     }
 }
