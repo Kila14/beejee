@@ -16,7 +16,7 @@ class Index
         $tasks = $taskModel->getTasks((int) $offset, (int) $count, $order_field, $order_direction);
         
         if (! empty($task_add_edit_result_cookie = $_COOKIE['task_add_edit_result'] ?? ''))
-            setcookie('task_add_edit_result', '', time() - 3600);
+            setcookie('task_add_edit_result', '', time() - 3600, buildLink());
         
         $pages_count = (int) ceil($tasks_count / $count);
         $pagination = $pages_count > 1 ? getPagination($page, $pages_count, 3) : '';

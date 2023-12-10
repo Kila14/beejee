@@ -11,8 +11,8 @@
         <div class="container mt-3">
             <div class="d-flex justify-content-end">
                 <?php if (\App\Models\User::isAuthenticated()) : ?>
-                    <a class="btn btn-secondary" href="/log-out">Выход</a>
-                <?php elseif($_SERVER['REQUEST_URI'] !== '/log-in') : ?>
-                    <a class="btn btn-primary" href="/log-in">Войти</a>
+                    <a class="btn btn-secondary" href="<?= buildLink('log-out') ?>">Выход</a>
+                <?php elseif($_SERVER['REQUEST_URI'] !== buildLink('log-in')) : ?>
+                    <a class="btn btn-primary" href="<?= buildLink('log-in') ?>">Войти</a>
                 <?php endif; ?>
             </div>

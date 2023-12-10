@@ -27,7 +27,7 @@
         <input type="hidden" name="task_status_id" value="<?= $data['task_status_id'] ?? 1; ?>">
     <?php endif; ?>
     <div class="d-flex justify-content-between">
-        <a class="btn btn-secondary" href="/">Отмена</a>
+        <a class="btn btn-secondary" href="<?= buildLink() ?>">Отмена</a>
         <button type="submit" class="btn btn-primary"><?= $submit_button_title ?? 'Отправить'; ?></button>
     </div>
 </form>

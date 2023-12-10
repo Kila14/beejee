@@ -20,8 +20,8 @@ class Tasks
                 $post_data['task_admin_edited'] = 0;
                 
                 if (($this->taskModel->addTask($post_data)) === true) {
-                    setcookie('task_add_edit_result', 'Задача успешно добавлена');
-                    header('Location: /');
+                    setcookie('task_add_edit_result', 'Задача успешно добавлена', 0, buildLink());
+                    header('Location: ' . buildLink());
                 } else {
                     $errors[] = 'При добавлении задачи произошла ошибка';
                 }
@@ -52,8 +52,8 @@ class Tasks
                 $post_data['task_admin_edited'] = $post_data['task_description'] !== $db_data['task_description'] ? 1 : 0;
                 
                 if (($this->taskModel->editTask($post_data)) === true) {
-                    setcookie('task_add_edit_result', 'Задача успешно обновлена');
-                    header('Location: /');
+                    setcookie('task_add_edit_result', 'Задача успешно обновлена', 0, buildLink());
+                    header('Location: ' . buildLink());
                 } else {
                     $errors[] = 'При редактировании задачи произошла ошибка';
                 }

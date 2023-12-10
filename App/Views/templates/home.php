@@ -18,7 +18,7 @@
                         <tr>
                             <td><?= $task['id']; ?></td>
                             <td>
-                                <a href="/edit-task?id=<?= $task['id']; ?>"><?= $task['user_name']; ?></a>
+                                <a href="<?= buildLink("edit-task?id={$task['id']}") ?>"><?= $task['user_name']; ?></a>
                             </td>
                             <td><?= $task['user_email']; ?></td>
                             <td><?= $task['task_description']; ?></td>
@@ -41,7 +41,7 @@
     <?php endif; ?>
     <div class="d-flex justify-content-between my-3">
         <div></div>
-        <a class="btn btn-primary" href="/add-task">Добавить задачу</a>
+        <a class="btn btn-primary" href="<?= buildLink('add-task'); ?>">Добавить задачу</a>
     </div>
     <?php if (! empty($task_add_edit_result_cookie)) : ?>
         <div class="alert alert-success" role="alert">

@@ -7,20 +7,20 @@ class Users
     public function logIn() : void
     {
         if (\App\Models\User::isAuthenticated())
-            header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/'));
+            header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? buildLink()));
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post_data = $_POST;
             
             if (empty($errors = \App\Models\User::authenticate($post_data))) {
                 if (isset($_COOKIE['http_referer']))
-                    setcookie('http_referer', '', time() - 3600);
+                    setcookie('http_referer', '', time() - 3600, buildLink());
                 
-                header('Location: ' . ($_COOKIE['http_referer'] ?? '/'));
+                header('Location: ' . ($_COOKIE['http_referer'] ?? buildLink()));
             }
         } else {
             if (isset($_SERVER['HTTP_REFERER']))
-                setcookie('http_referer', $_SERVER['HTTP_REFERER']);
+                setcookie('http_referer', $_SERVER['HTTP_REFERER'], 0, buildLink());
         }
         
         echo template('templates/user.php', ['h1' => 'Аутентификация', 'mode' => 'log_in', 'data' => $post_data ?? [], 'errors' => $errors ?? []]);
@@ -29,10 +29,11 @@ class Users
     public function logOut() : void
     {
         if (! \App\Models\User::isAuthenticated())
-            header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/'));
+            header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? buildLink()));
         
         \App\Models\User::deauthenticate();
-        header('Location: /');
+        setcookie('http_referer', '', time() - 3600, buildLink());
+        header('Location: ' . buildLink());
     }
     
     public static function showNotFound() : void
@@ -60,6 +61,6 @@ class Users
         $model->dropTables();
         $model->createTables();
         
-        header('Location: /');
+        header('Location: ' . buildLink());
     }
 }

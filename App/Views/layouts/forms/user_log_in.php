@@ -8,7 +8,7 @@
         <input type="password" class="form-control" id="user-password" name="user_password" value="<?= $data['user_password'] ?? ''; ?>">
     </div>
     <div class="d-flex justify-content-between">
-        <a class="btn btn-secondary" href="/">Отмена</a>
+        <a class="btn btn-secondary" href="<?= buildLink() ?>">Отмена</a>
         <button type="submit" class="btn btn-primary">Войти</button>
     </div>
 </form>
